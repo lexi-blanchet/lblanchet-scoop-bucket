@@ -1,0 +1,59 @@
+{
+    "version": "1b73a13",
+    "description": "Unofficial desktop client for the Jellyfin media server (Rust/CEF/MPV).",
+    "homepage": "https://github.com/andrewrabert/jellium-desktop",
+    "license": "GPL-3.0-only",
+     "architecture": {
+        "64bit": {
+            "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-x64.zip",
+            "hash": "4aafe6a62be50f9740365a499c078c3c8e752a4eeb14db941b0328790f19e3b4"
+        },
+        "arm64": {
+            "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-arm64.zip",
+            "hash": "3fce9ce4b9fe2bf258198c83022c0b27f9b9847e4c54357b3e063ae2d6951332"
+        }
+    },
+    "installer": {
+        "script": [
+            "# 1. GitHub artifacts put a zip inside a zip. Find and extract that inner zip.",
+            "$innerZip = Get-ChildItem -Path $dir -Filter '*.zip' | Select-Object -First 1",
+            "if ($innerZip) {",
+            "    Expand-Archive -Path $innerZip.FullName -DestinationPath $dir -Force",
+            "    Remove-Item $innerZip.FullName -Force",
+            "}",
+            "# 2. Find the randomly named commit folder, flatten its contents to the root, and clean up.",
+            "$commitDir = Get-ChildItem -Path $dir -Directory | Where-Object { $_.Name -match 'JelliumDesktop' } | Select-Object -First 1",
+            "if ($commitDir) {",
+            "    Move-Item -Path \"$($commitDir.FullName)\\*\" -Destination $dir -Force",
+            "    Remove-Item $commitDir.FullName -Recurse -Force",
+            "}"
+        ]
+    },
+    "bin": "jellium-desktop.exe",
+    "shortcuts": [
+        [
+            "jellium-desktop.exe",
+            "Jellium Desktop"
+        ]
+    ],
+    "checkver": {
+        "script": [
+            "$api = Invoke-RestMethod -Uri 'https://api.github.com/repos/andrewrabert/jellium-desktop/commits'",
+            "$fullSha = $api[0].sha",
+            "$shortSha = $api[0].sha.substring(0,7)",
+            "return \"$shortSha|$fullSha\""
+        ],
+        "regex": "(?<version>[a-f0-9]{7})\\|(?<commit>[a-f0-9]{40})"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-x64.zip"
+            },
+            "arm64": {
+                "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-arm64.zip"
+            }
+        },
+        "notes": "Built from commit: $matchCommit"
+    }
+}
