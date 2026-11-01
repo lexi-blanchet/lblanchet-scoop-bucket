@@ -11,4 +11,8 @@ scoop install lblanchet-scoop-bucket/jellium-desktop-nightly
 
 ## Manifests
 
-- [Jellium-desktop](https://github.com/andrewrabert/jellium-desktop)
+> [!WARNING]
+> Nightly current has a [consistent issue](https://github.com/andrewrabert/jellium-desktop/issues/694) so i've guessed the last stable release
+
+- [Jellium-desktop-stable](https://github.com/andrewrabert/jellium-desktop/actions/runs/31352217495)
+- [Jellium-desktop-nightly](https://github.com/andrewrabert/jellium-desktop)

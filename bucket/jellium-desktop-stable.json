@@ -1,0 +1,39 @@
+{
+    "version": "28f2cf1",
+    "description": "Unofficial desktop client for the Jellyfin media server (Rust/CEF/MPV). Manually selected stable version",
+    "homepage": "https://github.com/andrewrabert/jellium-desktop/actions/runs/31352217495",
+    "license": "GPL-3.0-only",
+     "architecture": {
+        "64bit": {
+            "url": "https://nightly.link/andrewrabert/jellium-desktop/actions/runs/31352217495/windows-x64.zip",
+            "hash": "a1456c6d2a792462c096adf4ff1d63d28885264c45c3ec954e2c272d563fc9ec"
+        },
+        "arm64": {
+            "url": "https://nightly.link/andrewrabert/jellium-desktop/actions/runs/31352217495/windows-arm64.zip",
+            "hash": "daa3a5467d4ce8f060fd0d595b8d68ee420b336da578fac24be326208eb5fbef"
+        }
+    },
+    "installer": {
+        "script": [
+            "# 1. GitHub artifacts put a zip inside a zip. Find and extract that inner zip.",
+            "$innerZip = Get-ChildItem -Path $dir -Filter '*.zip' | Select-Object -First 1",
+            "if ($innerZip) {",
+            "    Expand-Archive -Path $innerZip.FullName -DestinationPath $dir -Force",
+            "    Remove-Item $innerZip.FullName -Force",
+            "}",
+            "# 2. Find the randomly named commit folder, flatten its contents to the root, and clean up.",
+            "$commitDir = Get-ChildItem -Path $dir -Directory | Where-Object { $_.Name -match 'JelliumDesktop' } | Select-Object -First 1",
+            "if ($commitDir) {",
+            "    Move-Item -Path \"$($commitDir.FullName)\\*\" -Destination $dir -Force",
+            "    Remove-Item $commitDir.FullName -Recurse -Force",
+            "}"
+        ]
+    },
+    "bin": "jellium-desktop.exe",
+    "shortcuts": [
+        [
+            "jellium-desktop.exe",
+            "Jellium Desktop"
+        ]
+    ]
+}
