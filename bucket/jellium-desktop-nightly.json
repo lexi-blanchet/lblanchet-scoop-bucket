@@ -1,5 +1,5 @@
 {
-    "version": "96bae1c",
+    "version": "4c1843b",
     "description": "Unofficial desktop client for the Jellyfin media server (Rust/CEF/MPV).",
     "homepage": "https://github.com/andrewrabert/jellium-desktop",
     "license": "GPL-3.0-only",
