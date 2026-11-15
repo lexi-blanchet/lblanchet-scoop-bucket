@@ -1,16 +1,16 @@
 {
-    "version": "0b8d2c8",
+    "version": "09de0a6",
     "description": "Unofficial desktop client for the Jellyfin media server (Rust/CEF/MPV).",
     "homepage": "https://github.com/andrewrabert/jellium-desktop",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
             "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-x64.zip",
-            "hash": "79b782ea901e72dd0637dc2e989994e6a00f6d356f79e38a4968f7ae3cdbf564"
+            "hash": "4866fd202865ab73d9c0ef6b5ce7926c2bcfe40cce7db9448cf3361216331cb7"
         },
         "arm64": {
             "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-arm64.zip",
-            "hash": "ec6bb12ab22fde6be8100010ce57824afc1d7e9605b8746680db311d5d9bede5"
+            "hash": "405ae451e2fa2cb8bbca8b702f4111654b583d649cb9b5a7f97cd8a7e0eb75ea"
         }
     },
     "installer": {
