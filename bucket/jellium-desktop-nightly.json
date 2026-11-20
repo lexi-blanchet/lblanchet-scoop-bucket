@@ -6,7 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-x64.zip",
-            "hash": "352fb27be02e5fdebe832f103ef657f71dabce867eb6c732a19f869b30627f16"
+            "hash": "2eaa2c0899f022cc9fb5f4db9e54ab06ff49aba4f3348cfe98bf8bbfd2e20c3f"
         },
         "arm64": {
             "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-arm64.zip",
