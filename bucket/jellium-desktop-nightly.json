@@ -10,7 +10,7 @@
         },
         "arm64": {
             "url": "https://nightly.link/andrewrabert/jellium-desktop/workflows/build-windows/main/windows-arm64.zip",
-            "hash": "3f0a7ee30fdf246a972a99122a764f2e4401f1c3d170d65dcd9eaf79f97e9156"
+            "hash": "1519b523a8a44ee09ef6edf3e68278dc4cb48d5ee54d3f088dc190c62813a3cb"
         }
     },
     "installer": {
